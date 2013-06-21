@@ -2,15 +2,17 @@ nonLinearTimer = {
     _period: 1000,
     _onNonLinearTimerEvent: null,
     _empty: function () {},
-    _mode: null
+    _mode: null,
+    _th: null
 }
 
-nonLinearTimer.Start = function () {
-    setTimeout(nonLinearTimer._mode, nonLinearTimer._period);
+nonLinearTimer.Start = function () {    
+    nonLinearTimer._th = setTimeout(nonLinearTimer._mode, nonLinearTimer._period);    
     nonLinearTimer._onNonLinearTimerEvent();
 }
 
-nonLinearTimer.Stop = function () {
+nonLinearTimer.Stop = function () {    
+    clearTimeout( nonLinearTimer._th );
     this._mode = this._empty;
 }
 
